@@ -1,0 +1,10 @@
+# Written by the software factory's footprint (P2-05b): change it through the factory's profile, not here.
+schema_version: 1
+app_id: 5364464
+approvers:
+  - caglarsubas
+protected_paths:
+  - glob: src/auth/**
+    minimum_risk: R3
+    note: session signing
+restricted: []

@@ -1,0 +1,14 @@
+# Written by the software factory's footprint (P2-05b): change it through the factory's profile, not here.
+target:
+  repo: caglarsubas/factory-fixture-ts-mini
+commands:
+  setup: pnpm install --frozen-lockfile
+  typecheck: pnpm exec tsc --noEmit
+  lint: pnpm exec tsc --noEmit -p tsconfig.lint.json
+  test: node --test
+gates:
+  adapters:
+    - typescript
+  sast_rules:
+    - default
+    - sink_added
