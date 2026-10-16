@@ -2,7 +2,12 @@
 
 ## Orders
 
-`listOrders(store)` returns orders oldest first.
+`listOrders(store, options?)` returns orders oldest first.
+
+The `limit` option caps how many orders are returned:
+
+- The default limit is 20.
+- The maximum limit is 100; larger values are clamped to 100.
 
 ## Sessions
 
