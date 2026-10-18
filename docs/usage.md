@@ -2,7 +2,9 @@
 
 ## Orders
 
-`listOrders(store)` returns orders oldest first.
+`listOrders(store, { limit })` returns orders oldest first. The `limit` option is optional. Its default is 20 and its maximum is 100; values outside the range are clamped to 1–100.
+
+Note that `listOrders` currently returns one fewer order than the effective limit: at most 19 orders by default and at most 99 orders at the maximum limit (and none for `limit: 1`). This documents the current behaviour, which looks like an off-by-one bug and may change in a future fix.
 
 ### Paginated listing
 
