@@ -22,6 +22,18 @@ while (page.nextCursor !== undefined) {
 }
 ```
 
+## Store
+
+`OrderStore` holds the orders that `listOrders` and `listOrdersPage` read. Create one with `new OrderStore()` and add orders with `add(order)`. Each order is an `Order` with the fields `id`, `customer`, `totalCents` and `createdAt`.
+
+```ts
+const store = new OrderStore();
+store.add({ id: "a1", customer: "Ada", totalCents: 1200, createdAt: "2024-01-02T10:00:00Z" });
+store.add({ id: "a0", customer: "Bob", totalCents: 800, createdAt: "2024-01-01T09:00:00Z" });
+```
+
+`all()` returns every order in the store, oldest first. It sorts by `createdAt` and breaks ties by `id`. It returns a sorted copy, so changing the returned array does not change the store.
+
 ## Sessions
 
 `signSession` and `verifySession` sign a session with an HMAC key the caller provides.
