@@ -12,6 +12,11 @@ export class OrderStore {
     this.#orders.push(order);
   }
 
+  /** The stored order with this id, or undefined if there is none. Does not affect ordering. */
+  get(id: string): Order | undefined {
+    return this.#orders.find((o) => o.id === id);
+  }
+
   /** Every order, oldest first; ties broken by id. */
   all(): Order[] {
     return [...this.#orders].sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.id.localeCompare(b.id));
