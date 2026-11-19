@@ -42,3 +42,30 @@ test("get does not change ordering", () => {
   assert.deepEqual(s.all().map((o) => o.id), before);
   assert.deepEqual(s.all(), [orders[2], orders[1], orders[0]]);
 });
+
+test("remove deletes the order with that id and returns true", () => {
+  const s = filled();
+  assert.strictEqual(s.remove("b"), true);
+  assert.strictEqual(s.get("b"), undefined);
+  assert.ok(!s.all().some((o) => o.id === "b"));
+  assert.equal(s.all().length, 2);
+});
+
+test("remove returns false for a missing id", () => {
+  const s = filled();
+  const before = s.all();
+  assert.strictEqual(s.remove("missing"), false);
+  assert.deepEqual(s.all(), before);
+});
+
+test("remove returns false on an empty store", () => {
+  assert.strictEqual(new OrderStore().remove("a"), false);
+});
+
+test("remove keeps remaining orders oldest first", () => {
+  const s = filled();
+  assert.strictEqual(s.remove("c"), true);
+  assert.deepEqual(s.all().map((o) => o.id), ["a", "b"]);
+  assert.strictEqual(s.remove("c"), false);
+  assert.deepEqual(s.all().map((o) => o.id), ["a", "b"]);
+});
